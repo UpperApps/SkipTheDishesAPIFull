@@ -7,6 +7,7 @@ package com.skipthedishes.resources;
 
 import com.skipthedishes.DTO.ProductDTO;
 import com.skipthedishes.services.ProductService;
+import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,9 +37,9 @@ public class ProductResource {
     private ProductService productService;
     
     @RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<ProductDTO>> list(){
+    public ResponseEntity<Collection<ProductDTO>> list(){
 
-            List<ProductDTO> products = productService.listProducts();
+            Collection<ProductDTO> products = productService.listProducts();
 
             return ResponseEntity.status(HttpStatus.OK).body(products);
     }

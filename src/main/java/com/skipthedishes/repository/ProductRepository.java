@@ -6,12 +6,12 @@
 package com.skipthedishes.repository;
 
 import com.skipthedishes.domain.Product;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author rodrigomelo
  */
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
     
 }

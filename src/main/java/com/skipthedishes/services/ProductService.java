@@ -8,6 +8,8 @@ package com.skipthedishes.services;
 import com.skipthedishes.DTO.ProductDTO;
 import com.skipthedishes.domain.Product;
 import com.skipthedishes.repository.ProductRepository;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,22 +20,22 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ProductService {
-    
+
     @Autowired
     private ProductRepository productRepository;
-    
-    public List<ProductDTO> listProducts(){
-        
-        List<ProductDTO> productsDTO = null;
-        
-        Iterable<Product> products = productRepository.findAll();
-        
-        for (Product product : products) {
-            ProductDTO productDTO = new ProductDTO(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getStore().getId());
-            productsDTO.add(productDTO);
-        }
-        
+
+    public Collection<ProductDTO> listProducts() {
+
+        Collection<ProductDTO> productsDTO = new ArrayList<>();
+
+        Collection<Product> products = productRepository.findAll();
+
+        products.stream()
+                .map((product) -> new ProductDTO(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getStore().getId()))
+                .forEachOrdered((productDTO) -> {productsDTO.add(productDTO);
+        });
+
         return productsDTO;
     }
-    
+
 }
