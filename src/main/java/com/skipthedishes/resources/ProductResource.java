@@ -44,9 +44,10 @@ public class ProductResource {
             return ResponseEntity.status(HttpStatus.OK).body(products);
     }
     
-    @RequestMapping(value = "/{id}", method = GET)
-    public Object get(@PathVariable String id) {
-        return null;
+    @RequestMapping(value = ("/{id}"), method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ProductDTO> get(@PathVariable("id") Long id){
+            ProductDTO product = productService.findById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(product);
     }
     
     @RequestMapping(value = "/{id}", method = PUT)

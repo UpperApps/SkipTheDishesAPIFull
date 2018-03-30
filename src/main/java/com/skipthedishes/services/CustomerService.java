@@ -8,6 +8,8 @@ package com.skipthedishes.services;
 import com.skipthedishes.DTO.CostumerDTO;
 import com.skipthedishes.domain.Customer;
 import com.skipthedishes.repository.CostumerRepository;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,22 +22,19 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 
     @Autowired
-    private CostumerRepository costumerRepository;
+    private CostumerRepository customerRepository;
 
-    public List<CostumerDTO> listCostumers() {
-        
-        Iterable<Customer> costumers = null;
+    public Collection<CostumerDTO> listCostumers() {
 
-        costumers = costumerRepository.findAll();
+        Collection<Customer> customers = customerRepository.findAll();
 
-        List<CostumerDTO> costumersDTO = null;
+        Collection<CostumerDTO> customersDTO = new ArrayList<>();
 
-        for (Customer costumer : costumers) {
-            CostumerDTO costumerDTO = new CostumerDTO(costumer.getId(), costumer.getEmail(), costumer.getName(),
-                    costumer.getAddress(), costumer.getCreation(), costumer.getPassword());
-            costumersDTO.add(costumerDTO);
-        }
+        customers.stream()
+                .map(customer -> new CostumerDTO(customer.getId(), customer.getEmail(), customer.getName(),
+                customer.getAddress(), customer.getCreation(), customer.getPassword()))
+                .forEachOrdered(customerDTO -> customersDTO.add(customerDTO));
 
-        return costumersDTO;
+        return customersDTO;
     }
 }

@@ -6,12 +6,13 @@
 package com.skipthedishes.repository;
 
 import com.skipthedishes.domain.Cousine;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author rodrigomelo
  */
-public interface CousineRepository extends CrudRepository<Cousine, Integer> {
+public interface CousineRepository extends JpaRepository<Cousine, Integer> {
     
 }

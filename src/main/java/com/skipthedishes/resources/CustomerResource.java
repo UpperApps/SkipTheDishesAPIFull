@@ -7,6 +7,7 @@ package com.skipthedishes.resources;
 
 import com.skipthedishes.DTO.CostumerDTO;
 import com.skipthedishes.services.CustomerService;
+import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,11 +37,9 @@ public class CustomerResource {
     private CustomerService customerService;
     
     @RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
-    public ResponseEntity<List<CostumerDTO>> list(){
-        
-            List<CostumerDTO> customer = null;
+    public ResponseEntity<Collection<CostumerDTO>> list(){
 
-            customer = customerService.listCostumers();
+            Collection<CostumerDTO> customer = customerService.listCostumers();
 
             return ResponseEntity.status(HttpStatus.OK).body(customer);
     }

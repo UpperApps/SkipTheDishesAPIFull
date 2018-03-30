@@ -7,12 +7,12 @@ package com.skipthedishes.repository;
 
 
 import com.skipthedishes.domain.CustomerOrder;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author rodrigomelo
  */
-public interface CostumerOrderRepository extends CrudRepository<CustomerOrder, Integer> {
+public interface CostumerOrderRepository extends JpaRepository<CustomerOrder, Integer> {
     
 }

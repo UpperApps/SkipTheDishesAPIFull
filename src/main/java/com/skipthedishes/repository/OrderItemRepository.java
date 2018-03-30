@@ -6,12 +6,13 @@
 package com.skipthedishes.repository;
 
 import com.skipthedishes.domain.OrderItem;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author rodrigomelo
  */
-public interface OrderItemRepository extends CrudRepository<OrderItem, Integer> {
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
     
 }

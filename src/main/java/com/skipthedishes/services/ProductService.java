@@ -10,7 +10,7 @@ import com.skipthedishes.domain.Product;
 import com.skipthedishes.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import static org.reflections.util.Utils.name;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +36,16 @@ public class ProductService {
         });
 
         return productsDTO;
+    }
+
+    public ProductDTO findById(Long id) {
+        
+        ProductDTO productDTO = new ProductDTO(Integer.SIZE, name, description, 0, Integer.SIZE)
+        
+        if(id != null) {
+            Product product = productRepository.findById(Long.parseLong(id));
+            ProductDTO productDTO = new ProductDTO(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getStore().getId());
+        }
     }
 
 }
