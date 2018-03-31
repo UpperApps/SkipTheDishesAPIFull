@@ -8,7 +8,6 @@ package com.skipthedishes.resources;
 import com.skipthedishes.DTO.ProductDTO;
 import com.skipthedishes.services.ProductService;
 import java.util.Collection;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
@@ -45,7 +43,7 @@ public class ProductResource {
     }
     
     @RequestMapping(value = ("/{id}"), method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ProductDTO> get(@PathVariable("id") Long id){
+    public ResponseEntity<ProductDTO> get(@PathVariable("id") Integer id){
             ProductDTO product = productService.findById(id);
             return ResponseEntity.status(HttpStatus.OK).body(product);
     }

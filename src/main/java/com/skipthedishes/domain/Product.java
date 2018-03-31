@@ -53,7 +53,7 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "price")
     private double price;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     @JsonBackReference
     private List<OrderItem> orderItemList;
     @JoinColumn(name = "storeId", referencedColumnName = "id")

@@ -19,6 +19,10 @@ public class ProductDTO {
     private String description;
     private double price;
     private Integer storeId;
+    
+    public ProductDTO(){
+        
+    }
 
     public ProductDTO(Integer id, String name, String description, double price, Integer storeId) {
         this.id = id;

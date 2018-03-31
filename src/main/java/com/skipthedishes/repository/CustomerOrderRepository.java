@@ -5,13 +5,14 @@
  */
 package com.skipthedishes.repository;
 
-import com.skipthedishes.domain.Customer;
+
+import com.skipthedishes.domain.CustomerOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author rodrigomelo
  */
-public interface CostumerRepository extends JpaRepository<Customer, Integer> {
+public interface CustomerOrderRepository extends JpaRepository<CustomerOrder, Integer> {
     
 }

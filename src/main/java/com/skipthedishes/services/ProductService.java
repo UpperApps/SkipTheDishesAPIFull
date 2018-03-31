@@ -10,7 +10,7 @@ import com.skipthedishes.domain.Product;
 import com.skipthedishes.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.Collection;
-import static org.reflections.util.Utils.name;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,14 +38,22 @@ public class ProductService {
         return productsDTO;
     }
 
-    public ProductDTO findById(Long id) {
+    public ProductDTO findById(Integer id) {
         
-        ProductDTO productDTO = new ProductDTO(Integer.SIZE, name, description, 0, Integer.SIZE)
+        ProductDTO productDTO = new ProductDTO();
         
         if(id != null) {
-            Product product = productRepository.findById(Long.parseLong(id));
-            ProductDTO productDTO = new ProductDTO(product.getId(), product.getName(), product.getDescription(), product.getPrice(), product.getStore().getId());
+            Optional<Product> product = productRepository.findById(id);
+            
+             productDTO.setId(product.get().getId());
+             productDTO.setName(product.get().getName());
+             productDTO.setDescription(product.get().getDescription());
+             productDTO.setPrice(product.get().getPrice());
+             productDTO.setStoreId(product.get().getStore().getId());
+             
         }
+        
+        return productDTO;
     }
 
 }

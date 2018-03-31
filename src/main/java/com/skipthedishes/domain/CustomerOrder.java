@@ -6,12 +6,12 @@
 package com.skipthedishes.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +29,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -51,6 +53,7 @@ public class CustomerOrder implements Serializable {
     @NotNull
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
     @Basic(optional = false)
     @NotNull
@@ -76,7 +79,7 @@ public class CustomerOrder implements Serializable {
     @Column(name = "lastUpdate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
-    @JoinColumn(name = "custumerId", referencedColumnName = "id")
+    @JoinColumn(name = "customerId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @JsonManagedReference
     private Customer customer;
@@ -84,7 +87,8 @@ public class CustomerOrder implements Serializable {
     @ManyToOne(optional = false)
     @JsonManagedReference
     private Store store;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    @OneToMany(mappedBy = "customerOrder", orphanRemoval = true)
+    @Cascade(CascadeType.ALL)
     @JsonBackReference
     private List<OrderItem> orderItemList;
 

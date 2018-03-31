@@ -7,12 +7,12 @@ package com.skipthedishes.services;
 
 import com.skipthedishes.DTO.CostumerDTO;
 import com.skipthedishes.domain.Customer;
-import com.skipthedishes.repository.CostumerRepository;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.skipthedishes.repository.CustomerRepository;
 
 /**
  *
@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 public class CustomerService {
 
     @Autowired
-    private CostumerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public Collection<CostumerDTO> listCostumers() {
 

@@ -5,8 +5,8 @@
  */
 package com.skipthedishes.resources;
 
+import com.skipthedishes.DTO.OrderDTO;
 import com.skipthedishes.domain.CustomerOrder;
-import com.skipthedishes.repository.CostumerOrderRepository;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+import com.skipthedishes.repository.CustomerOrderRepository;
+import com.skipthedishes.services.OrderService;
 
 /**
  *
@@ -32,7 +34,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 public class OrderResource {
     
     @Autowired
-    private CostumerOrderRepository costumerOrderRepository;
+    private CustomerOrderRepository costumerOrderRepository;
+    
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     public ResponseEntity<Iterable<CustomerOrder>> list(){
@@ -52,11 +57,11 @@ public class OrderResource {
         return null;
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<CustomerOrder> salvar(@Valid @RequestBody CustomerOrder order) {
+    @RequestMapping(method = RequestMethod.POST, produces = {MediaType.APPLICATION_JSON_VALUE}, consumes = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    public ResponseEntity<CustomerOrder> save(@Valid @RequestBody OrderDTO order) {
 
-        CustomerOrder costumerOrder = costumerOrderRepository.save(order);
-        return ResponseEntity.status(HttpStatus.OK).body(costumerOrder);
+        CustomerOrder customerOrder = orderService.save(order);
+        return ResponseEntity.status(HttpStatus.OK).body(customerOrder);
     }
 
     @RequestMapping(value = "/{id}", method = DELETE)

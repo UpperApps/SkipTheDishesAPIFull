@@ -53,11 +53,11 @@ public class OrderItem implements Serializable {
     @JoinColumn(name = "orderId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @JsonManagedReference
-    private CustomerOrder orderId;
+    private CustomerOrder customerOrder;
     @JoinColumn(name = "productId", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @JsonManagedReference
-    private Product productId;
+    private Product product;
 
     public OrderItem() {
     }
@@ -105,20 +105,20 @@ public class OrderItem implements Serializable {
         this.total = total;
     }
 
-    public CustomerOrder getOrderId() {
-        return orderId;
+    public CustomerOrder getCustomerOrder() {
+        return customerOrder;
     }
 
-    public void setOrderId(CustomerOrder orderId) {
-        this.orderId = orderId;
+    public void setCustomerOrder(CustomerOrder customerOrder) {
+        this.customerOrder = customerOrder;
     }
 
-    public Product getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
