@@ -7,4 +7,20 @@ The project was developed using the Spring Boot Framework and the MySQL Database
 
 The project uses Swagger for documentation, so when the project is running you can use the following link to see the documentation and to test the API: http://localhost:8080/swagger-ui.html
 
-Enjoy!
+** Enjoy! **
+
+## Further works
+
+- Add an authentication/authorization process with a database persistence.
+- Add authorization control in the resources.
+- Add the cancel opperation to Orders.
+- Add the get Order status opperation .
+- Improve the error handling.
+- And much, much more... The sky is the limit. :smile:
+
+## P.S.: It was included a basic authentication process to the API using JSON Web Token (JWT).
+So, in order to login and take an authorization token is necessary to access the uri /login with the follow heather payload:
+
+```
+{"username":"admin", "password":"password"}
+```
