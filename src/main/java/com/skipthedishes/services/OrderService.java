@@ -19,10 +19,13 @@ import com.skipthedishes.repository.CustomerOrderRepository;
 import com.skipthedishes.repository.CustomerRepository;
 import com.skipthedishes.repository.StoreRepository;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -43,6 +46,7 @@ public class OrderService {
     @Autowired
     private StoreRepository storeRepository;
 
+    @Transactional(propagation = Propagation.NESTED)
     public CustomerOrder save(OrderDTO orderDTO) {
 
         CustomerOrder order = new CustomerOrder();
